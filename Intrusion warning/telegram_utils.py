@@ -1,12 +1,17 @@
-import telegram
+from aiogram import Bot
 
 
-def send_telegram(photo_path="alert.png"):
+async def send_telegram(text):
     try:
         my_token = "6600484016:AAGcR0xieWIUoBkw9IfMdhwRenlG1Lqtq5Q"
-        bot = telegram.Bot(token=my_token)
-        bot.sendPhoto(chat_id="1910018067", photo=open(
-            photo_path, "rb"), caption="Intrusion detection")
-        print("Sent message successfully!")
+        chat_id = "1910018067"
+
+        bot = Bot(token=my_token)
+
+        # Send the text message
+        await bot.send_message(chat_id, text)
+
+        print("Message sent successfully!")
+
     except Exception as ex:
-        print("Cannot send message to Telegram", ex)
+        print("Error sending message to Telegram", str(ex))

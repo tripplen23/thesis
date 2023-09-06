@@ -4,7 +4,10 @@ from shapely.geometry import Point
 from shapely.geometry.polygon import Polygon
 from telegram_utils import send_telegram
 import datetime
-import threading
+from pygame import mixer
+mixer.init()
+sound = mixer.Sound("alarm_audio/alarm2.wav")
+
 
 # Check if Centroid of human detect is inside the Polygon area
 
@@ -17,7 +20,7 @@ def isInside(points, centroid):
 
 
 class YoloDetect():
-    def __init__(self, detect_class="person", frame_width=1280, frame_height=720):
+    def __init__(self, detect_class="person", frame_width=900, frame_height=1280):
         # Parameters
         self.classnames_file = "model/yolov3.txt"
         self.weights_file = "model/yolov3.weights"
@@ -47,24 +50,42 @@ class YoloDetect():
 
     def draw_prediction(self, img, class_id, x, y, x_plus_w, y_plus_h, points):
         label = str(self.classes[class_id])
-        color = (0, 255, 0)
-        cv2.rectangle(img, (x, y), (x_plus_w, y_plus_h), color, 2)
-        cv2.putText(img, label, (x - 10, y - 10),
+        color = (0, 255, 0)  # Green
+
+        # Calculate the new coordinates for the top-left and bottom-right corners
+        new_x = max(x, 0)
+        new_y = max(y, 0)
+        new_x_plus_w = min(x_plus_w, img.shape[1])
+        new_y_plus_h = min(y_plus_h, img.shape[0])
+
+        # Calculate the new bounding box width and height
+        new_w = new_x_plus_w - new_x
+        new_h = new_y_plus_h - new_y
+
+        # Draw the bounding box and label
+        cv2.rectangle(img, (new_x, new_y),
+                      (new_x_plus_w, new_y_plus_h), color, 2)
+        cv2.putText(img, label, (new_x, new_y - 10),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
 
-        # Calculate the centroid
-        centroid = ((x + x_plus_w) // 2, (y + y_plus_h) // 2)
+        # Calculate the centroid of the new bounding box
+        centroid_x = new_x + (new_w // 2)
+        centroid_y = new_y + (new_h // 2)
+        centroid = (centroid_x, centroid_y)
         cv2.circle(img, centroid, 5, (color), -1)
 
         if isInside(points, centroid):
             img = self.alert(img)
-
+            try:
+                sound.play()
+            except:  # isplaying = False
+                pass
         return isInside(points, centroid)
 
-    def alert(self, img):
-        cv2.putText(img, "ALARM!!!", (10, 50),
-                    cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-        # New thread to send to telegram after 15 seconds
+    async def alert(self, img):
+        cv2.putText(img, "ALARM!!!", (20, 80),
+                    cv2.FONT_HERSHEY_SIMPLEX, 3, (0, 0, 255), 2)
+        # Send alert message to Telegram
         if (self.last_alert is None) or (
             (datetime.datetime.utcnow() -
              self.last_alert).total_seconds() > self.alert_telegram_each
@@ -72,11 +93,10 @@ class YoloDetect():
             self.last_alert = datetime.datetime.utcnow()
             cv2.imwrite("alert.png", cv2.resize(
                 img, dsize=None, fx=0.2, fy=0.2))
-            thread = threading.Thread(target=send_telegram)
-            thread.start()
+            await send_telegram("Intrusion detected! Please take action.")
         return img
 
-    def detect(self, frame, points):
+    async def detect(self, frame, points):
         blob = cv2.dnn.blobFromImage(
             frame, self.scale, (416, 416), (0, 0, 0), True, crop=False)
         self.model.setInput(blob)
@@ -112,6 +132,7 @@ class YoloDetect():
             y = box[1]
             w = box[2]
             h = box[3]
+            await self.alert(frame)
             self.draw_prediction(frame, class_ids[i], round(
                 x), round(y), round(x + w), round(y + h), points)
 

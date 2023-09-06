@@ -1,5 +1,6 @@
 opencv-python
 numpy
 imutils
-python-telegram-bot
 shapely
+pygame
+aiogram==2.15
