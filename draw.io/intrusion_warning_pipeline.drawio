@@ -1,0 +1,58 @@
+<mxfile host="app.diagrams.net" modified="2023-09-10T16:33:57.062Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.76" etag="3SO3w5VYUaoAb4Si4Ful" version="21.7.4" type="device">
+  <diagram name="Page-1" id="M5ieIeC-ziThRtjQLN1r">
+    <mxGraphModel dx="788" dy="455" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="D2WVyuxQHx5taoIEQqHV-1" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Read from camera &amp;amp; display frame&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="150" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="D2WVyuxQHx5taoIEQqHV-2" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="200" y="199.5" as="sourcePoint" />
+            <mxPoint x="270" y="199.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="D2WVyuxQHx5taoIEQqHV-3" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Draw polygon to define restricted/sensitive area&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="150" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="D2WVyuxQHx5taoIEQqHV-4" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="414" y="199.5" as="sourcePoint" />
+            <mxPoint x="484" y="199.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="D2WVyuxQHx5taoIEQqHV-5" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Define detect object&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="150" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="D2WVyuxQHx5taoIEQqHV-6" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="559.5" y="260" as="sourcePoint" />
+            <mxPoint x="559.5" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="D2WVyuxQHx5taoIEQqHV-7" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Detect using Yolo &amp;amp; find centroid&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="340" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="D2WVyuxQHx5taoIEQqHV-8" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Check if centroids in restricted/sensitive area&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="340" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="D2WVyuxQHx5taoIEQqHV-9" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Display alert and send Telegram message&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="340" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="D2WVyuxQHx5taoIEQqHV-10" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="483.5" y="393.63" as="sourcePoint" />
+            <mxPoint x="413.5" y="394" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="D2WVyuxQHx5taoIEQqHV-11" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="270" y="389.71" as="sourcePoint" />
+            <mxPoint x="200" y="390.08" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
