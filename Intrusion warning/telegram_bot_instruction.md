@@ -2,21 +2,21 @@
 
 # 2. Create a Telegram bot with BotFather (verified)
 
-## 2.1. BotFather (verified):
+    ## 2.1. BotFather (verified):
 
-![Alt text](./img/BotFather_verified.png)
+    ![Alt text](./img/BotFather_verified.png)
 
-## 2.2. Click to start button:
+    ## 2.2. Click to start button:
 
-![Alt text](./img/Start.png)
+    ![Alt text](./img/Start.png)
 
-## 2.3. Create new bot:
+    ## 2.3. Create new bot:
 
-![Alt text](./img/NewBot.png)
+    ![Alt text](./img/NewBot.png)
 
-## 2.4. Set Bot information and get token of our bot:
+    ## 2.4. Set Bot information and get token of our bot:
 
-![Alt text](./img/GetToken.png)
+    ![Alt text](./img/GetToken.png)
 
 # 3. Create a group chat and get chat ID of user
 
