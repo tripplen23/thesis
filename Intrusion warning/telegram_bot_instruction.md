@@ -36,7 +36,3 @@
   http://api.telegram.org/bot[TOKEN]/sendMessage?chat_id=[CHAT_ID]&text=[MY_MESSAGE_TEXT]
   ![Alt text](./img/SendMessage.png)
   ![Alt text](./img/ReceivedMessage.png)
-
-# 4. Add library python-telegram-bot or aiogram
-
-# 5. Write code to send text and image
